@@ -86,7 +86,7 @@ function showNews(data) {
 
                             <a
                                 href="${item.url}"
-                                class="btn btn-primary mt-auto"
+                                class="btn more mt-auto"
                                 target="_blank"
                             >
                                 Read More
