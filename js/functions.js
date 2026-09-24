@@ -175,8 +175,8 @@ function makeMainPart(data) {
         </div>
         <div class="content">
             <span class="mainDesigne active text-white"><span class="text">Top News</span></span>
-            <h2>${article1.title}</h2>
-            <p class="mb-0">${article1.description.slice(0, 70)}...</p>
+            <h2>${article1?.title}</h2>
+            <p class="mb-0">${article1.description?.slice(0, 70)}...</p>
             <div class="icons">
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
@@ -197,7 +197,7 @@ function makeMainPart(data) {
           <div class="box" style="background-image: url('${article2.urlToImage ?? ""}');" >
               <div class="content">
                 <span class="mainDesigne active text-white"><span class="text">${capitalizeFirstLetter(category[randomIndex])}</span></span>
-              <h2 class="mb-0 fw-bold">${article2.title.slice(0.3)}...</h2>
+              <h2 class="mb-0 fw-bold">${article2.title?.slice(0.3)}...</h2>
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
                 <span>${getTimeAgo(article2.publishedAt) ?? "Sep 21,2026"}</span>
@@ -207,7 +207,7 @@ function makeMainPart(data) {
           <div class="box the-one-to-hide" style="background-image: url('${article3.urlToImage ?? ""}');">
               <div class="content">
                 <span class="mainDesigne active text-white"><span class="text">${capitalizeFirstLetter(category[randomIndex2])}</span></span>
-              <h2 class="mb-0 fw-bold">${article3.title.slice(0.3)}...</h2>
+              <h2 class="mb-0 fw-bold">${article3.title?.slice(0.3)}...</h2>
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
                 <span>${getTimeAgo(article2.publishedAt) ?? "Sep 21,2026"}</span>
