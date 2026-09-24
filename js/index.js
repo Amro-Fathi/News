@@ -6,4 +6,8 @@ let pagination = document.querySelector("#pagination"),
   mainPartLoaded = false,
   currentArticles = [];
 
+let lastCategory = localStorage.getItem("lastCategory");
+
+categoryButton.value = lastCategory || "general";
+
 getData();

@@ -130,7 +130,13 @@
             <div class="item">
               <div class="position-relative">
                 <i class="fa-solid fa-list-ul select-icon"></i>
-                <select onchange="getData()" id="category" class="form-select ps-5 delicate-bg">
+                <select
+                  onchange="
+                    saveCategory();
+                    getData();
+                  "
+                  id="category"
+                  class="form-select ps-5 delicate-bg">
                   <option value="" disabled selected>All Categories</option>
                   <option value="general">General</option>
                   <option value="business">Business</option>

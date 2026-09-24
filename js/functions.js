@@ -16,6 +16,7 @@ async function getData() {
   let response = await fetch(`https://newsapi.org/v2/top-headlines?${params}`),
     data = await response.json();
   currentArticles = data.articles;
+  localStorage.setItem("lastCategory", categoryButton.value);
   changeNavBarActive(navbarAnchor, false);
   preparePaginations(data.totalResults);
   showNews(data.articles);
@@ -52,14 +53,14 @@ function showNews(data) {
                             </div>
 
                             <div class="col-md-8">
-                                <div class="card-body d-flex flex-column h-100">
-                                    <h5>${item.title}</h5>
+                                <div class="card-body  d-flex flex-column h-100">
+                                    <h5  >${item.title}</h5>
 
                                     <p>${item.description ?? ""}</p>
 
                                     <a
                                         href="${item.url}"
-                                        class="btn btn-primary mt-auto"
+                                        class="btn more mt-auto"
                                         target="_blank"
                                     >
                                         Read More
@@ -79,8 +80,8 @@ function showNews(data) {
                             >
                         </div>
 
-                        <div class="card-body d-flex flex-column">
-                            <h5>${item.title}</h5>
+                        <div class="card-body  d-flex flex-column">
+                            <h5  >${item.title}</h5>
 
                             <p>${item.description ?? ""}</p>
 
@@ -167,9 +168,10 @@ function makeMainPart(data) {
  <div class="row g-3">
 
       <div class="col-md-8 col-12 part1">
-        <div class="item">
+        <div class="item  overflow-hidden">
           <div class="img">
-          <img src="${article1.urlToImage ?? article3.urlToImage ?? article2.urlToImage}" class="img-fluid">
+          <img src="${article1.urlToImage ?? "./images/placeholder.png"}"
+     onerror="this.src='./images/placeholder.png'"   class="img-fluid">
         </div>
         <div class="content">
             <span class="mainDesigne active text-white"><span class="text">Top News</span></span>
@@ -178,7 +180,7 @@ function makeMainPart(data) {
             <div class="icons">
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
-                <span>${article1.publishedAt.slice(0, 10) ?? "Sep 21,2026"}</span>
+                <span>${getTimeAgo(article2.publishedAt) ?? "Sep 21,2026"}</span>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-users-line me-2 mainColor"></i>
@@ -192,23 +194,23 @@ function makeMainPart(data) {
       <div class="col-md-4 col-12 part2">
 
         <div class="item">
-          <div class="box" style="background-image: url('${article2.urlToImage ?? article3.urlToImage ?? article1.urlToImage}');">
+          <div class="box" style="background-image: url('${article2.urlToImage ?? ""}');" >
               <div class="content">
                 <span class="mainDesigne active text-white"><span class="text">${capitalizeFirstLetter(category[randomIndex])}</span></span>
               <h2 class="mb-0 fw-bold">${article2.title.slice(0.3)}...</h2>
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
-                <span>${article2.publishedAt.slice(0, 10) ?? "Sep 21,2026"}</span>
+                <span>${getTimeAgo(article2.publishedAt) ?? "Sep 21,2026"}</span>
               </div>
               </div>
           </div>
-          <div class="box the-one-to-hide" style="background-image: url('${article3.urlToImage ?? article1.urlToImage ?? article2.urlToImage}');">
+          <div class="box the-one-to-hide" style="background-image: url('${article3.urlToImage ?? ""}');">
               <div class="content">
                 <span class="mainDesigne active text-white"><span class="text">${capitalizeFirstLetter(category[randomIndex2])}</span></span>
               <h2 class="mb-0 fw-bold">${article3.title.slice(0.3)}...</h2>
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
-                <span>${article3.publishedAt.slice(0, 10) ?? "Sep 21,2026"}</span>
+                <span>${getTimeAgo(article2.publishedAt) ?? "Sep 21,2026"}</span>
               </div>
               </div>
           </div>
@@ -232,6 +234,7 @@ function changeNavBarActive(that, doTheEvent = true) {
   that.classList.add("active");
   let type = that.dataset.categoryType;
   categoryButton.value = type;
+  localStorage.setItem("lastCategory", type);
   if (doTheEvent) {
     categoryButton.dispatchEvent(new Event("change"));
   }
@@ -254,4 +257,35 @@ function preventReload(event) {
     top: newsSection.offsetTop - navbarHeight,
     behavior: "smooth",
   });
+}
+
+function getTimeAgo(publishedAt) {
+  let publishedTime = new Date(publishedAt);
+  let now = new Date();
+
+  let difference = Math.floor((now - publishedTime) / 1000);
+
+  if (difference < 60) {
+    return `${difference} seconds ago`;
+  }
+
+  let minutes = Math.floor(difference / 60);
+
+  if (minutes < 60) {
+    return `${minutes} minute${minutes == 1 ? "" : "s"} ago`;
+  }
+
+  let hours = Math.floor(minutes / 60);
+
+  if (hours < 24) {
+    return `${hours} hour${hours == 1 ? "" : "s"} ago`;
+  }
+
+  let days = Math.floor(hours / 24);
+
+  return `${days} day${days == 1 ? "" : "s"} ago`;
+}
+
+function saveCategory() {
+  localStorage.setItem("lastCategory", categoryButton.value);
 }
