@@ -31,9 +31,9 @@ function showNews(data) {
   let view = document.querySelector("#News").dataset.view;
   data.forEach(function (item, index) {
     news.innerHTML += `
-        <div  class="${view == "grid" ? "col-lg-4 col-xl-3 col-md-6" : "col-12"}">
+        <div style="animation-delay: ${index * 0.2}s;"  class="${view == "grid" ? "col-lg-4 col-xl-3 col-md-6" : "col-12"} animationCard">
 
-            <div style="animation-delay: ${index * 0.2}s;" class="card h-100 ${view == "rows" ? "list" : ""}">
+            <div  class="card  h-100 ${view == "rows" ? "list" : ""}">
 
                 ${
                   view == "rows"
@@ -178,7 +178,7 @@ function makeMainPart(data) {
             <div class="icons">
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
-                <span>${article1.publishedAt.slice(0,10) ?? "Sep 21,2026"}</span>
+                <span>${article1.publishedAt.slice(0, 10) ?? "Sep 21,2026"}</span>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-users-line me-2 mainColor"></i>
@@ -195,20 +195,20 @@ function makeMainPart(data) {
           <div class="box" style="background-image: url('${article2.urlToImage ?? article3.urlToImage ?? article1.urlToImage}');">
               <div class="content">
                 <span class="mainDesigne active text-white"><span class="text">${capitalizeFirstLetter(category[randomIndex])}</span></span>
-              <h2 class="mb-0 fw-bold">${article2.title.slice(0.30)}...</h2>
+              <h2 class="mb-0 fw-bold">${article2.title.slice(0.3)}...</h2>
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
-                <span>${article2.publishedAt.slice(0,10) ?? "Sep 21,2026"}</span>
+                <span>${article2.publishedAt.slice(0, 10) ?? "Sep 21,2026"}</span>
               </div>
               </div>
           </div>
           <div class="box the-one-to-hide" style="background-image: url('${article3.urlToImage ?? article1.urlToImage ?? article2.urlToImage}');">
               <div class="content">
                 <span class="mainDesigne active text-white"><span class="text">${capitalizeFirstLetter(category[randomIndex2])}</span></span>
-              <h2 class="mb-0 fw-bold">${article3.title.slice(0.30)}...</h2>
+              <h2 class="mb-0 fw-bold">${article3.title.slice(0.3)}...</h2>
               <div class="icon">
                 <i class="fa-regular fa-clock me-2 mainColor"></i>
-                <span>${article3.publishedAt.slice(0,10) ?? "Sep 21,2026"}</span>
+                <span>${article3.publishedAt.slice(0, 10) ?? "Sep 21,2026"}</span>
               </div>
               </div>
           </div>
@@ -230,7 +230,6 @@ function capitalizeFirstLetter(str) {
 function changeNavBarActive(that, doTheEvent = true) {
   that.parentElement.parentElement.querySelector(".active").classList.remove("active");
   that.classList.add("active");
-
   let type = that.dataset.categoryType;
   categoryButton.value = type;
   if (doTheEvent) {
