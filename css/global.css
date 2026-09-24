@@ -1,0 +1,81 @@
+:root{
+    --firstColor :#865bfd;
+    --secondColor : #080679d8;
+}
+
+body {
+  background: linear-gradient(to right, #ffffff, #78c9e6, #bbd6e8);
+
+
+  color: #212529;
+}
+
+.select-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+.mainColor {
+  color: var(--firstColor);
+}
+.secondColor {
+  color: var(--secondColor);
+}
+.mainBg{
+    background-color: var(--firstColor);
+}
+.secondBg{
+    background-color: var(--secondColor);
+}
+.mainDesigne {
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+.mainDesigne span.text {
+position: relative;
+cursor: pointer;
+
+}
+.mainDesigne:hover span.text,
+.mainDesigne.active span.text {
+transition-duration: 1s;
+transition-delay: 0.5s;
+color: #fff;
+}
+.mainDesigne::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 0%;
+    height: 0%;
+    background-color: var(--secondColor);
+    border-radius: 50%;
+}
+
+.mainDesigne:hover::before ,
+.mainDesigne.active::before {
+    transition-duration: 1s;
+width: 100%;
+height: 100%;
+    border-radius: 10px;
+
+
+}
+
+
+.delicate-bg{
+      background: linear-gradient(to left, #ffffff, #e1dbed);
+
+}

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="My Second JavaScript Project" />
+    <meta name="author" content="Amr Fathi Mohammed" />
+    <meta name="keywords" content="HTML CSS JavaScript" />
+    <title>News</title>
+
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/index.responsive.css" />
+    <link rel="stylesheet" href="css/keyframes.css" />
+    <!-- <link rel="icon" type="image/x-icon" href="./images/badge-1.png" /> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-xl bg-body-tertiary">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fa-solid fa-newspaper mainColor"></i>
+          <span class="nav-title">
+            <h2 class="mb-0">News<span class="mainColor">House</span></h2>
+            <p class="mb-0">Stay informed. Stay Ahead</p>
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 column-gap-4">
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="general" class="nav-link mainDesigne active"
+                ><span class="text"> <i class="fa-solid me-2 fa-globe text-primary"></i> General</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="business" class="nav-link mainDesigne"
+                ><span class="text"><i class="fa-solid me-2 fa-wallet text-success"></i> Business</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="entertainment" class="nav-link mainDesigne"
+                ><span class="text"><i class="fa-solid me-2 fa-tv"></i>Entertainment</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="health" class="nav-link mainDesigne"
+                ><span class="text"><i class="fa-solid me-2 fa-heart text-danger"></i>Health</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="science" class="nav-link mainDesigne"
+                ><span class="text"><i class="fa-solid me-2 fa-flask text-info"></i>Science</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="sports" class="nav-link mainDesigne"
+                ><span class="text"><i class="fa-solid me-2 fa-trophy text-warning"></i> Sports</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a onclick="changeNavBarActive(this)" data-category-type="technology" class="nav-link mainDesigne"
+                ><span class="text"> <i class="fa-solid me-2 fa-microchip text-primary"></i>Technology</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="Main">
+      <div class="container"></div>
+    </section>
+
+    <section id="SearchButtons" class="py-5">
+      <div class="container">
+        <div class="row g-3 py-3 row-gap-3 align-items-center">
+          <div class="col-md-6 mt-0">
+            <div class="item">
+              <input type="text" id="search" class="form-control delicate-bg" placeholder="Search for latest News..." />
+            </div>
+          </div>
+          <div class="col-md-4 mt-0">
+            <div class="item">
+              <div class="position-relative">
+                <i class="fa-solid fa-list-ul select-icon"></i>
+                <select onchange="getData()" id="category" class="form-select ps-5 delicate-bg">
+                  <option value="" disabled selected>All Categories</option>
+                  <option value="general">General</option>
+                  <option value="business">Business</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="health">Health</option>
+                  <option value="science">Science</option>
+                  <option value="sports">Sports</option>
+                  <option value="technology">Technology</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 mt-0">
+            <button onclick="getData()" class="mainBg text-light w-100 mainDesigne searchButton">
+              <span class="text"><i class="fa-solid fa-magnifying-glass"></i> Search</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-view="grid" id="News" class="pb-5">
+      <div class="container">
+        <div class="view mb-4 w-100 d-flex justify-content-between">
+          <h2 class="fw-bolder">Latest <span class="mainColor">News</span></h2>
+          <div class="icons d-flex justify-content-center align-items-center column-gap-2">
+            <span class="me-2">view : </span>
+            <i onclick="changeView(this, 'grid')" class="fa-solid fa-table-cells-large active"></i>
+            <i onclick="changeView(this, 'rows')" class="fa-solid fa-bars"></i>
+          </div>
+        </div>
+        <div id="newsContent" class="row g-4"></div>
+      </div>
+    </section>
+
+    <section class="pb-5">
+      <div class="container">
+        <nav aria-label="pagination">
+          <div class="overflow-auto">
+            <ul id="pagination" class="pagination justify-content-center column-gap-3" data-page-number="1"></ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+@media (max-width: 1300px) {
+  #News #newsContent .card{
+  width: 300px;
+  margin: auto;
+}
+}
+
+@media (min-width: 371px) and (max-width: 1300px) {
+
+}
+
+@media (min-width: 577px) and (max-width: 1300px) {
+
+}
+
+@media (min-width: 769px) and (max-width: 1300px) {
+  #News #newsContent .card{
+  width: auto;
+}
+.the-one-to-hide{
+  display: none;
+}
+#Main .part2 .item .box {
+  height: 100%;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1300px) {
+
+}
+
+@media (min-width: 1181px) and (max-width: 1300px) {
+.the-one-to-hide{
+  display: initial;
+}
+#Main .part2 .item .box {
+  height: 50%;
+}
+}
